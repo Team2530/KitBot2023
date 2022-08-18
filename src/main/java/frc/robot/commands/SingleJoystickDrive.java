@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.libraries.Deadzone;
 
-public class DualJoystickDrive extends CommandBase {
+public class SingleJoystickDrive extends CommandBase {
     /**
      * Creates a new SingleJoystickDrive.
      */
@@ -20,7 +20,7 @@ public class DualJoystickDrive extends CommandBase {
     Joystick leftStick;
     Joystick rightStick;
 
-    public DualJoystickDrive(DriveTrain m_drivetrain, Joystick leftStick, Joystick rightStick) {
+    public SingleJoystickDrive(DriveTrain m_drivetrain, Joystick leftStick, Joystick rightStick) {
         this.m_drivetrain = m_drivetrain;
         this.leftStick = leftStick;
         this.rightStick = rightStick;
@@ -36,10 +36,8 @@ public class DualJoystickDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double rightStickY = 0.5 * Deadzone.deadZone(rightStick.getY(), 0.05);
-        double leftStickZ = -0.5 * Deadzone.deadZone(leftStick.getZ(), 0.05);
-        m_drivetrain.moveLeftWheel(rightStickY + leftStickZ);
-        m_drivetrain.moveRightWheel(rightStickY - leftStickZ);
+        m_drivetrain.moveLeftWheel(Deadzone.deadZone(leftStick.getY(), 0.05));
+        m_drivetrain.moveRightWheel(Deadzone.deadZone(rightStick.getY(), 0.05));
     }
 
     // Called once the command ends or is interrupted.

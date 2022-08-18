@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
  * This is Team 2530's DriveTrain class. It handles all things related to the
@@ -18,20 +17,27 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
  * handling the control mode, and auto-turning.
  */
 public class DriveTrain extends SubsystemBase {
-    // -------------------- Motors -------------------- \\
-    private WPI_VictorSPX leftMotor = new WPI_VictorSPX(0);
-    private WPI_VictorSPX rightMotor = new WPI_VictorSPX(1);
+    // -------------------- Motor Controllers -------------------- \\
+    private final WPI_VictorSPX FLMC = new WPI_VictorSPX(4);
+    private final WPI_VictorSPX BLMC = new WPI_VictorSPX(3);
+    private final WPI_VictorSPX FRMC = new WPI_VictorSPX(5);
+    private final WPI_VictorSPX BRMC = new WPI_VictorSPX(1);
 
     public DriveTrain() {
-       
+        FLMC.setInverted(true);
+        BLMC.setInverted(true);
+        FRMC.setInverted(false);
+        BRMC.setInverted(false);
     }
 
-    public void moveLeftMotor(double speed) {
-        leftMotor.set(speed);
+    public void moveLeftWheel(double speed) {
+        FLMC.set(speed);
+        BLMC.set(speed);
     }
 
-    public void moveRightMotor(double speed) {
-        rightMotor.set(speed);
+    public void moveRightWheel(double speed) {
+        FRMC.set(speed);
+        BRMC.set(speed);
     }
 
     /**
