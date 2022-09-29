@@ -7,7 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.commands.DualJoystickDrive;
+import frc.robot.commands.LimeLight;
 import frc.robot.subsystems.DriveTrain;
 
 /**
@@ -92,6 +94,7 @@ public class Robot extends TimedRobot {
     /** This function is called periodically during operator control. */
     @Override
     public void teleopPeriodic() {
+        LimeLight.updateValues();
     }
 
     @Override
