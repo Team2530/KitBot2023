@@ -18,10 +18,10 @@ public final class Constants {
     public final static double d = 1.0;
 
 
-    public static final double limeAngle = -20.0;
+    public static final double limeAngle = 0.0;
 
     //Values are in meters
-    public static final double goalHeight = 2.2352;
-    public static final double limeHeight = 1.01;
+    public static final double goalHeight = 2.22;
+    public static final double limeHeight = 1.14;
 
 }

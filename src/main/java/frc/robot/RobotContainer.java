@@ -12,7 +12,9 @@ import frc.robot.commands.SingleJoystickDrive;
 import frc.robot.subsystems.BallDetection;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Lights;
+import frc.robot.subsystems.LimeLight;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -31,7 +33,7 @@ public class RobotContainer {
 
     final Joystick stickLeft = new Joystick(0);
     final Joystick stickRight = new Joystick(1);
-
+    LimeLight m_LimeLight = new LimeLight(drivetrain);
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
@@ -48,9 +50,11 @@ public class RobotContainer {
      */
 
     int pc = 0;
-
+    InstantCommand pointAtTarget = new InstantCommand(() -> LimeLight.aimAtTarget()
+    
+    );
     private void configureButtonBindings() {
-
+        new JoystickButton(stickRight, 1).whileHeld(pointAtTarget);
     }
 
     /**
